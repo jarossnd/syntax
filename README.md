@@ -34,7 +34,7 @@ Pricing follows the supplied specification in USD. SEO and complete website buil
 
 The contact form posts directly to the public Formspree endpoint configured in `src/pages/contact.astro`. It uses native HTML submission rather than a framework or JavaScript form library, so it also works without JavaScript. No deploy key or other credentials belong in the site.
 
-- Email and message are required; optional name/company fields and text-length limits use browser validation.
+- Name, email, company, and message are required; required fields and text-length limits use browser validation.
 - The selected service or plan is included in the submission. Pricing links preselect it when JavaScript is enabled.
 - A hidden `_gotcha` honeypot complements the spam protection configured in Formspree.
 - Visitors leave the site to complete any Formspree verification and see its confirmation or errors. The site does not show success before Formspree accepts the submission.
