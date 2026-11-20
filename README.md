@@ -50,8 +50,24 @@ Manage notification recipients, CAPTCHA, domain restrictions, and other settings
 - Set the production `site` URL in `astro.config.mjs`, then add canonical URLs and a sitemap using that verified domain.
 - Review final content and any required legal/privacy pages.
 
+## Netlify
+
+Import `jarossnd/syntax` from GitHub in Netlify and use `main` as the production branch. Keep the base directory at the repository root.
+
+The committed `netlify.toml` configures:
+
+- Build command: `npm run build`
+- Publish directory: `dist`
+- Node.js: 24
+
+No Netlify CLI, Astro adapter, serverless functions, or environment secrets are required for this static site. Contact submissions continue to use Formspree; Netlify Forms is not needed.
+
+Once the initial deploy succeeds, test Home, Services, Contact, and an unknown URL (which should show the custom 404). Confirm the contact form still delivers from the deployed site, especially if Formspree domain restrictions are enabled.
+
+Connect `syntax.dev` through Netlify's domain settings when ready. Configure the requested DNS records at the domain's DNS provider and confirm HTTPS is active before using the domain publicly.
+
 ## Source repository
 
 The source is published at [github.com/jarossnd/syntax](https://github.com/jarossnd/syntax) on the `main` branch.
 
-Publishing source does not deploy the website. Hosting and DNS for the intended domain, `syntax.dev`, have not been configured by this project.
+Publishing source does not deploy the website until Netlify's GitHub integration is connected. Netlify configuration is included, but no hosted site or DNS records have been created by this project.
