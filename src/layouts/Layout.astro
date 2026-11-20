@@ -1,0 +1,83 @@
+---
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/dm-sans';
+import '../styles/global.css';
+import Wordmark from '../components/Wordmark.astro';
+import Icon from '../components/Icon.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/services/', label: 'Services' },
+  { href: '/contact/', label: 'Contact' },
+];
+const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Syntax" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header container">
+      <Wordmark />
+      <nav class="desktop-nav" aria-label="Main navigation">
+        {links.map(({ href, label }) => (
+          <a href={href} aria-current={current === (href.replace(/\/$/, '') || '/') ? 'page' : undefined}>{label}</a>
+        ))}
+      </nav>
+      <a class="header-cta" href="/contact/">Let’s talk <Icon name="arrow" size={17} /></a>
+      <details class="mobile-menu">
+        <summary>Menu <Icon name="plus" size={19} /></summary>
+        <nav aria-label="Mobile navigation">
+          {links.map(({ href, label }) => (
+            <a href={href} aria-current={current === (href.replace(/\/$/, '') || '/') ? 'page' : undefined}>{label}<Icon name="arrow" size={18} /></a>
+          ))}
+        </nav>
+      </details>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer container">
+      <div class="footer-top">
+        <div>
+          <Wordmark footer />
+          <p>Technology, with purpose.<br />Fargo–Moorhead & wherever you work.</p>
+        </div>
+        <div class="footer-links">
+          <nav aria-label="Footer navigation">
+            <span class="eyebrow">EXPLORE</span>
+            <a href="/">Home</a>
+            <a href="/services/">Services</a>
+            <a href="/contact/">Contact us</a>
+          </nav>
+          <nav aria-label="Service navigation">
+            <span class="eyebrow">WHAT WE DO</span>
+            <a href="/services/#managed-it">Managed IT & consulting</a>
+            <a href="/services/#web-development">Web development</a>
+            <a href="/services/#seo">SEO & web hosting</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© {new Date().getFullYear()} Syntax Inc. All rights reserved.</span>
+        <span class="footer-signoff"><span class="square"></span> GOOD PEOPLE. GOOD TECHNOLOGY.</span>
+      </div>
+    </footer>
+  </body>
+</html>

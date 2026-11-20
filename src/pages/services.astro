@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import ContactBanner from '../components/ContactBanner.astro';
+import { services, retainers } from '../data/services';
+
+const hourly = [
+  { tier: '01', name: 'General Support & Maintenance', rate: '$105', emergency: '$157.50 / hr', scope: 'Basic IT troubleshooting, CMS/plugin updates, routine website edits, domain/DNS management, and basic hosting support.' },
+  { tier: '02', name: 'Systems, Dev & Cloud', rate: '$140', emergency: '$210 / hr', scope: 'Custom web development, server migrations, cloud setup (AWS/Azure/M365), database optimization, and API integrations.' },
+  { tier: '03', name: 'Fractional CTO & Strategy', rate: '$195', emergency: 'By appointment', scope: 'IT architecture planning, cybersecurity audits, compliance consulting, vendor selection, and technology roadmapping.' },
+];
+const hosting = [
+  { name: 'Starter Hosting', price: '35', features: ['Managed SSL', 'Daily automated backups', '99.9% uptime monitoring', 'Standard CDN'] },
+  { name: 'Business Hosting', price: '85', features: ['High-performance VPS', 'Staging environment', 'Daily off-site backups', 'WAF security', 'Priority uptime response'] },
+  { name: 'Enterprise / Custom', price: '150+', features: ['Dedicated cloud resources (AWS/DigitalOcean)', 'Load balancing', 'Custom compliance & disaster recovery'] },
+];
+---
+<Layout title="Services & Pricing — Syntax" description="Explore managed IT, consulting, web development, SEO, and hosting. Transparent monthly retainers from $600, hourly consulting, and hosting from $35/month.">
+  <section class="page-hero container">
+    <p class="eyebrow"><span class="square"></span> SERVICES & PRICING</p>
+    <h1>Better technology.<br />Bigger possibilities<span class="orange">.</span></h1>
+    <div class="page-hero-bottom"><p>One partner for your systems, your website, and your next move.<br class="desktop-break" /> Practical expertise, built around your business.</p><a class="text-link" href="#pricing">Straight to pricing <Icon name="arrow" size={19} /></a></div>
+  </section>
+  <nav class="service-jump-nav container" aria-label="Jump to a service">
+    {services.map(service => <a href={`#${service.id}`}>{service.title}</a>)}
+  </nav>
+  <section class="service-details container" aria-label="Our services">
+    {services.map(service => (
+      <article class="service-detail" id={service.id}>
+        <div class="service-detail-title"><span class="mini-index">/{service.number}</span><Icon name={service.icon} size={32} /><h2>{service.title}</h2></div>
+        <div><h3>{service.short}</h3><p>{service.description}</p><ul class="feature-list">{service.features.map(feature => <li><Icon name="check" size={17} />{feature}</li>)}</ul>{(service.id === 'seo' || service.id === 'web-development') && <p class="small-note">Custom project quotes available after discovery.</p>}</div>
+      </article>
+    ))}
+  </section>
+  <section class="pricing-section" id="pricing" aria-labelledby="pricing-heading">
+    <div class="container section">
+      <div class="section-heading">
+        <div><p class="eyebrow"><span class="square"></span> CLEAR PRICING. REAL PARTNERSHIP.</p><h2 id="pricing-heading">The right support.<br />At the right scale.</h2></div>
+        <p>Choose an ongoing partnership or bring us in when you need us. All prices are in USD.</p>
+      </div>
+      <div class="pricing-grid">
+        {retainers.map((plan, index) => (
+          <article class:list={['pricing-card', { 'pricing-card-featured': index === 1 }]}>
+            <span class="plan-badge">{plan.badge}</span>
+            <h3>{plan.name}</h3>
+            <p class="plan-description">{plan.description}</p>
+            <p class="plan-price"><span>$</span>{plan.price}<small>/mo</small></p>
+            <p class="plan-hours">{plan.hours} hours / month <span>· ${plan.rate} / hr effective</span></p>
+            <a class:list={['button', index === 1 ? 'button-orange' : 'button-outline']} href={`/contact/?plan=${encodeURIComponent(plan.name)}`}>Select plan <Icon name="arrow" size={18} /></a>
+            <ul class="feature-list">
+              {plan.features.map(feature => <li><Icon name="check" size={17} />{feature}</li>)}
+              <li><Icon name="check" size={17} />Unused hours rollover: up to 25% for 1 month</li>
+              <li><Icon name="check" size={17} />Overage rate: ${plan.rate} / hr</li>
+            </ul>
+          </article>
+        ))}
+      </div>
+      <div class="pricing-terms"><span class="terms-label">THE DETAILS</span><p>All retainer agreements require a 3-month initial commitment, transitioning to month-to-month thereafter. Third-party software licenses, domain registrations, and hosting fees are billed separately unless specified.</p><p>SLA times refer to response, not resolution. Coverage and service scope are confirmed in your agreement.</p></div>
+    </div>
+  </section>
+  <section class="section container" aria-labelledby="hourly-heading">
+    <div class="section-heading"><div><p class="eyebrow"><span class="square"></span> WHEN YOU NEED A HAND</p><h2 id="hourly-heading">Expertise, on demand.</h2></div><p>Not ready for a retainer? Get focused support or specialist guidance, billed by the hour.</p></div>
+    <p id="table-hint" class="table-hint">Scroll the table horizontally to compare rates.</p>
+    <div class="table-scroll" role="region" aria-label="Hourly consulting rates" aria-describedby="table-hint" tabindex="0">
+      <table class="rates-table">
+        <caption class="sr-only">Ad-hoc consulting rates in USD. Standard hours are Monday–Friday, 8am–5pm.</caption>
+        <thead><tr><th scope="col">SERVICE TIER</th><th scope="col">STANDARD <span>M–F, 8am–5pm</span></th><th scope="col">EMERGENCY / AFTER HOURS <span>1.5× standard, where offered</span></th></tr></thead>
+        <tbody>{hourly.map(tier => <tr><th scope="row"><span class="mini-index">/{tier.tier}</span><strong>{tier.name}</strong><p>{tier.scope}</p></th><td><strong>{tier.rate}</strong><span> / hr</span></td><td>{tier.emergency}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <div class="billing-notes"><p><strong>Remote:</strong> billed in 15-minute increments.</p><p><strong>On-site:</strong> 2-hour minimum within Fargo–Moorhead.</p><p><strong>Website builds:</strong> fixed-bid quotes available after discovery.</p></div>
+    <a class="text-link" href="/contact/?plan=On-demand%20support">Request on-demand support <Icon name="arrow" size={19} /></a>
+  </section>
+  <section class="hosting-section container" id="hosting-plans" aria-labelledby="hosting-heading">
+    <div class="section-heading"><div><p class="eyebrow"><span class="square"></span> A HOME FOR YOUR WEBSITE</p><h2 id="hosting-heading">Hosting, handled.</h2></div><p>Managed infrastructure, without the extra to-do list. Hosting costs are billed separately from consulting hours.</p></div>
+    <div class="hosting-grid">{hosting.map(plan => <article class="hosting-card"><Icon name="hosting" size={26} /><h3>{plan.name}</h3><p class="hosting-price">${plan.price}<span> / mo</span></p><ul class="feature-list">{plan.features.map(feature => <li><Icon name="check" size={16} />{feature}</li>)}</ul><a class="text-link" href={`/contact/?plan=${encodeURIComponent(plan.name)}`}>Discuss hosting <Icon name="arrow" size={18} /></a></article>)}</div>
+  </section>
+  <section class="faq-section container" aria-labelledby="faq-heading">
+    <div><p class="eyebrow"><span class="square"></span> GOOD QUESTIONS</p><h2 id="faq-heading">A little more clarity.</h2></div>
+    <div class="faq-list">
+      <details><summary>Can I start with a single project?<Icon name="plus" size={20} /></summary><p>Absolutely. We offer hourly consulting and fixed-bid website builds after discovery. SEO work is custom-quoted around your goals and the scope of your site.</p></details>
+      <details><summary>What happens to unused retainer hours?<Icon name="plus" size={20} /></summary><p>Up to 25% of your plan’s monthly hours can roll over for one month. Additional hours are billed at your plan’s stated overage rate.</p></details>
+      <details><summary>Do you only work with local businesses?<Icon name="plus" size={20} /></summary><p>We’re based in the Fargo–Moorhead area and also work remotely with businesses elsewhere. On-site visits within the metro area have a 2-hour minimum charge.</p></details>
+      <details><summary>Are hosting and software licenses included?<Icon name="plus" size={20} /></summary><p>Hosting infrastructure is separate from consulting hours. Third-party software licenses, domain registrations, and hosting fees are billed separately unless your agreement specifies otherwise.</p></details>
+    </div>
+  </section>
+  <ContactBanner />
+</Layout>

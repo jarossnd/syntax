@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { retainers } from '../data/services';
+---
+<Layout title="Contact Us — Syntax" description="Start planning your next IT, website, SEO, or hosting project with Syntax. Serving small and growing businesses in Fargo–Moorhead and remotely.">
+  <section class="page-hero container contact-hero">
+    <p class="eyebrow"><span class="square"></span> LET’S CONNECT</p>
+    <h1>Big plans.<br />A simple hello<span class="orange">.</span></h1>
+    <p>You don’t need all the answers to get started.<br class="desktop-break" /> Just a challenge, an idea, or a better way forward.</p>
+  </section>
+  <section class="contact-layout container" aria-labelledby="contact-heading">
+    <div class="contact-intro">
+      <h2 id="contact-heading">Your next move<br />starts here.</h2>
+      <p>Tell us what’s working, what isn’t, and where you want to go. We’ll help you connect the dots.</p>
+      <div class="contact-info"><span class="contact-icon"><Icon name="strategy" size={23} /></span><div><h3>Local roots. Wider reach.</h3><p>Based in Fargo–Moorhead.<br />Available for remote partnerships.</p></div></div>
+      <div class="contact-info"><span class="contact-icon"><Icon name="web" size={23} /></span><div><h3>Not sure where to start?</h3><p>Explore the options. Find what fits.</p><a class="text-link" href="/services/#pricing">View services & pricing <Icon name="arrow" size={17} /></a></div></div>
+      <div class="contact-availability"><span class="square"></span><p>Direct contact details and booking options will be added before launch.</p></div>
+    </div>
+    <div class="inquiry-panel">
+      <div class="inquiry-heading"><h2>A little about your project.</h2></div>
+      <p class="form-notice" id="form-notice">Email and message are required. After sending, Formspree will guide you through any spam verification and confirm your submission.</p>
+      <form action="https://formspree.io/f/xgakzbgy" method="POST" aria-label="Contact inquiry" aria-describedby="form-notice form-privacy">
+        <div class="form-honeypot" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input id="website" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label for="name">Your name <span>(optional)</span></label><input id="name" name="name" autocomplete="name" maxlength="100" placeholder="First and last name" /></div>
+          <div class="form-field"><label for="email">Email address <span>(required)</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@company.com" required /></div>
+        </div>
+        <div class="form-field"><label for="company">Company <span>(optional)</span></label><input id="company" name="company" autocomplete="organization" maxlength="200" placeholder="Your business name" /></div>
+        <div class="form-field"><label for="interest">What can we help with?</label><select id="interest" name="interest"><option value="">Select a service or plan</option><optgroup label="Services"><option>Managed IT</option><option>IT consulting</option><option>Web development</option><option>SEO optimization</option><option>Web hosting</option><option>On-demand support</option></optgroup><optgroup label="Monthly partnerships">{retainers.map(plan => <option>{plan.name}</option>)}</optgroup><optgroup label="Hosting plans"><option>Starter Hosting</option><option>Business Hosting</option><option>Enterprise / Custom</option></optgroup><option>Not sure yet</option></select></div>
+        <div class="form-field"><label for="message">Tell us a little more <span>(required)</span></label><textarea id="message" name="message" rows="5" maxlength="5000" placeholder="What are you working on? What could be working better?" required></textarea></div>
+        <button class="button button-dark" type="submit">Send inquiry <Icon name="arrow" size={18} /></button>
+        <p class="form-footnote" id="form-privacy">Your details and message are sent to Formspree so we can respond. Please don’t include passwords or sensitive information.</p>
+      </form>
+    </div>
+  </section>
+  <section class="contact-expectations container" aria-labelledby="expectations-heading">
+    <p class="eyebrow"><span class="square"></span> A CONVERSATION, NOT A SALES PITCH</p>
+    <h2 id="expectations-heading">Let’s find the right fit.</h2>
+    <div class="steps-grid">
+      <article><span class="step-number">01</span><h3>Share the big picture.</h3><p>Tell us about your business and the challenge you’re trying to solve.</p></article>
+      <article><span class="step-number">02</span><h3>Explore your options.</h3><p>We’ll talk through your needs and what a practical next step could look like.</p></article>
+      <article><span class="step-number">03</span><h3>Get a clear direction.</h3><p>If we’re a fit, we’ll outline the scope, approach, and pricing before work begins.</p></article>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const requestedPlan = new URLSearchParams(location.search).get('plan');
+  const interest = document.querySelector<HTMLSelectElement>('#interest');
+  if (interest && requestedPlan && [...interest.options].some(option => option.value === requestedPlan)) {
+    interest.value = requestedPlan;
+  }
+</script>

@@ -1,0 +1,7 @@
+---
+interface Props { footer?: boolean }
+const { footer = false } = Astro.props;
+---
+<a class:list={['wordmark', { 'wordmark-footer': footer }]} href="/" aria-label="Syntax home">
+  syntax<span class="brand-dot" aria-hidden="true">.</span>
+</a>
