@@ -261,6 +261,29 @@ a.service-card:hover { background: var(--paper); }
 .not-found > p:not(.eyebrow) { margin-top: 25px; }
 .not-found .button { margin-top: 30px; }
 
+.help-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.help-card { display: flex; flex-direction: column; padding: 38px; border: 1px solid var(--line); }
+.help-card .card-top { gap: 20px; margin-bottom: 28px; }
+.help-card h2 { font-size: 34px; margin-bottom: 23px; }
+.help-card > p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+.help-card .feature-list { margin-block: 27px 35px; }
+.help-card .feature-list li { font-size: 13px; }
+.help-card .feature-list svg { color: var(--orange-dark); }
+.help-card-action { margin-top: auto; }
+.help-card .button { width: 100%; justify-content: space-between; gap: 16px; }
+.help-card .button:disabled { background: var(--paper); color: var(--muted); }
+.help-caption { font-size: 11px; color: var(--muted); line-height: 1.8; margin-top: 17px; }
+.help-caption a { text-decoration: underline; text-underline-offset: 3px; }
+.help-caption a:hover { color: var(--orange-dark); }
+.help-status { background: var(--paper); color: var(--muted); font-size: 8px; font-weight: 600; letter-spacing: .06em; padding: 5px 9px; }
+.help-card-remote { background: var(--ink); color: #fff; border-color: var(--ink); }
+.help-card-remote > p, .help-card-remote .help-caption { color: #c4c4bd; }
+.help-card-remote .eyebrow, .help-card-remote .feature-list svg { color: #ff9876; }
+.help-service-note { display: flex; align-items: flex-start; gap: 12px; border-top: 1px solid var(--line); margin-top: 60px; padding-block: 27px 65px; }
+.help-service-note .square { margin-top: 7px; }
+.help-service-note p { color: var(--muted); font-size: 12px; }
+.contact-support-link { margin-top: 20px; font-size: 12px; gap: 12px; }
+
 @media (min-width: 1500px) {
   .hero { padding-block: 115px; }
 }
@@ -363,6 +386,12 @@ a.service-card:hover { background: var(--paper); }
   .contact-info { margin-top: 26px; }
   .inquiry-panel { padding: 32px; }
   .contact-expectations { padding-block: 60px; }
+  .help-grid { gap: 18px; }
+  .help-card { padding: 27px; }
+  .help-card h2 { font-size: 29px; }
+  .help-card .eyebrow { font-size: 8px; }
+  .help-card .feature-list li { font-size: 12px; }
+  .help-card .button { font-size: 11px; padding-inline: 16px; }
 }
 
 @media (max-width: 540px) {
@@ -483,6 +512,12 @@ a.service-card:hover { background: var(--paper); }
   .form-field label { font-size: 12px; }
   .contact-expectations { padding-block: 47px; }
   .contact-expectations h2 { font-size: 32px; margin-bottom: 31px; }
+  .help-grid { grid-template-columns: 1fr; gap: 22px; }
+  .help-card { padding: 27px 23px; }
+  .help-card h2 { font-size: 31px; }
+  .help-card > p { font-size: 13px; }
+  .help-card .feature-list { margin-block: 24px 29px; }
+  .help-service-note { margin-top: 40px; padding-bottom: 47px; }
 }
 
 @media (prefers-reduced-motion: no-preference) {

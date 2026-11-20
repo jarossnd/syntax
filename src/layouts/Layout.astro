@@ -13,6 +13,7 @@ const { title, description } = Astro.props;
 const links = [
   { href: '/', label: 'Home' },
   { href: '/services/', label: 'Services' },
+  { href: '/get-help/', label: 'Get help' },
   { href: '/contact/', label: 'Contact' },
 ];
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -64,6 +65,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
             <span class="eyebrow">EXPLORE</span>
             <a href="/">Home</a>
             <a href="/services/">Services</a>
+            <a href="/get-help/">Get help</a>
             <a href="/contact/">Contact us</a>
           </nav>
           <nav aria-label="Service navigation">
