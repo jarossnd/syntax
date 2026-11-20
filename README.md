@@ -1,6 +1,8 @@
 # Syntax
 
-A static Astro website for Syntax, the trade name of Syntax Inc. White, near-black, and orange; self-hosted Manrope and DM Sans fonts.
+A static Astro website for Syntax, the trade name of Syntax Inc. White, near-black, and bright orange; self-hosted Manrope and DM Sans fonts.
+
+Typography uses 18px body text and navigation, with a 16px minimum for supporting text at the default browser font size. Responsive layouts reflow instead of shrinking text. The accent palette is defined by the `--accent` variables in `src/styles/global.css`.
 
 ## Local development
 
@@ -43,6 +45,8 @@ The contact form posts directly to the public Formspree endpoint configured in `
 Manage notification recipients, CAPTCHA, domain restrictions, and other settings in the Formspree Dashboard. Before launch, submit a test inquiry, complete any verification, and confirm both dashboard receipt and delivery to the intended inbox. Browser validation does not replace server-side spam protection or validation.
 
 ## Client support
+
+The header and mobile menu link to the Client Portal at `https://portal.syntax.dev`. Page-level contact calls to action still open the inquiry form. Active navigation uses an orange underline instead of dots.
 
 The Get Help page provides a remote-assistance request link and a clearly disabled Jira Service Management portal panel. The remote-assistance link opens the existing contact form with "Remote assistance" selected; it sends an email through Formspree, not a Jira ticket, and does not initiate a remote connection. Without JavaScript, clients can select that option themselves.
 

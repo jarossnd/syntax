@@ -10,6 +10,7 @@ interface Props {
   description: string;
 }
 const { title, description } = Astro.props;
+const clientPortalUrl = 'https://portal.syntax.dev';
 const links = [
   { href: '/', label: 'Home' },
   { href: '/services/', label: 'Services' },
@@ -43,13 +44,14 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
           <a href={href} aria-current={current === (href.replace(/\/$/, '') || '/') ? 'page' : undefined}>{label}</a>
         ))}
       </nav>
-      <a class="header-cta" href="/contact/">Let’s talk <Icon name="arrow" size={17} /></a>
+      <a class="header-cta" href={clientPortalUrl}>Client Portal <Icon name="arrow" size={17} /></a>
       <details class="mobile-menu">
         <summary>Menu <Icon name="plus" size={19} /></summary>
         <nav aria-label="Mobile navigation">
           {links.map(({ href, label }) => (
             <a href={href} aria-current={current === (href.replace(/\/$/, '') || '/') ? 'page' : undefined}>{label}<Icon name="arrow" size={18} /></a>
           ))}
+          <a href={clientPortalUrl}>Client Portal <Icon name="arrow" size={18} /></a>
         </nav>
       </details>
     </header>

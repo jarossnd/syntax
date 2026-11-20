@@ -18,7 +18,7 @@ const hosting = [
 <Layout title="Services & Pricing — Syntax" description="Explore managed IT, consulting, web development, SEO, and hosting. Transparent monthly retainers from $600, hourly consulting, and hosting from $35/month.">
   <section class="page-hero container">
     <p class="eyebrow"><span class="square"></span> SERVICES & PRICING</p>
-    <h1>Better technology.<br />Bigger possibilities<span class="orange">.</span></h1>
+    <h1>Better technology.<br />Bigger possibilities<span class="accent">.</span></h1>
     <div class="page-hero-bottom"><p>One partner for your systems, your website, and your next move.<br class="desktop-break" /> Practical expertise, built around your business.</p><a class="text-link" href="#pricing">Straight to pricing <Icon name="arrow" size={19} /></a></div>
   </section>
   <nav class="service-jump-nav container" aria-label="Jump to a service">
@@ -46,7 +46,7 @@ const hosting = [
             <p class="plan-description">{plan.description}</p>
             <p class="plan-price"><span>$</span>{plan.price}<small>/mo</small></p>
             <p class="plan-hours">{plan.hours} hours / month <span>· ${plan.rate} / hr effective</span></p>
-            <a class:list={['button', index === 1 ? 'button-orange' : 'button-outline']} href={`/contact/?plan=${encodeURIComponent(plan.name)}`}>Select plan <Icon name="arrow" size={18} /></a>
+            <a class:list={['button', index === 1 ? 'button-accent' : 'button-outline']} href={`/contact/?plan=${encodeURIComponent(plan.name)}`}>Select plan <Icon name="arrow" size={18} /></a>
             <ul class="feature-list">
               {plan.features.map(feature => <li><Icon name="check" size={17} />{feature}</li>)}
               <li><Icon name="check" size={17} />Unused hours rollover: up to 25% for 1 month</li>
