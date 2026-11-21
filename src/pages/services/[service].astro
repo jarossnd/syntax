@@ -1,0 +1,75 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { services } from '../../data/services';
+
+export const getStaticPaths = (() => services.map(service => ({
+  params: { service: service.id },
+  props: { service },
+}))) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { service } = Astro.props;
+const { page } = service;
+const contactUrl = `/contact/?plan=${encodeURIComponent(service.title)}`;
+---
+<Layout title={page.title} description={page.description}>
+  <section class="page-hero container">
+    <p class="eyebrow"><span class="square"></span> {service.title.toUpperCase()}</p>
+    <h1>{service.title}<br />for your business<span class="accent">.</span></h1>
+    <div class="page-hero-bottom">
+      <p>{service.description} Based in Fargo–Moorhead, with remote partnerships available.</p>
+      <a class="text-link" href={contactUrl}>Discuss {service.title.toLowerCase()} <Icon name="arrow" size={19} /></a>
+    </div>
+  </section>
+  <nav class="service-jump-nav container" aria-label="Service navigation">
+    <a href="/services/">All services & pricing</a>
+    {services.map(item => (
+      <a href={`/services/${item.id}/`} aria-current={item.id === service.id ? 'page' : undefined}>{item.title}</a>
+    ))}
+  </nav>
+  <section class="service-details container" aria-label={`${service.title} details`}>
+    <div class="service-detail">
+      <div class="service-detail-title"><span class="mini-index">/01</span><Icon name={service.icon} size={32} /><h2>Who it’s for.</h2></div>
+      <div><p>{page.audience}</p><ul class="feature-list">{service.features.map(feature => <li><Icon name="check" size={17} />{feature}</li>)}</ul></div>
+    </div>
+    <div class="service-detail">
+      <div class="service-detail-title"><span class="mini-index">/02</span><Icon name={service.icon} size={32} /><h2>What we work on.</h2></div>
+      <div class="service-scope">
+        {page.scope.map(item => <div><h3>{item.title}</h3><p>{item.description}</p></div>)}
+      </div>
+    </div>
+    <div class="service-detail">
+      <div class="service-detail-title"><span class="mini-index">/03</span><Icon name="strategy" size={32} /><h2>Scope & pricing.</h2></div>
+      <div><p>{page.pricing}</p><a class="text-link service-pricing-link" href={`/services/#${page.pricingAnchor}`}>View services & pricing <Icon name="arrow" size={19} /></a></div>
+    </div>
+  </section>
+  <section class="approach-section">
+    <div class="container section">
+      <div class="section-heading">
+        <div><p class="eyebrow"><span class="square"></span> A PRACTICAL NEXT STEP</p><h2>How we get started.</h2></div>
+        <p>{service.short} We agree on the work and expectations before it begins.</p>
+      </div>
+      <div class="steps-grid">
+        {page.steps.map((step, index) => <article><span class="step-number">0{index + 1}</span><h3>{step.title}</h3><p>{step.description}</p></article>)}
+      </div>
+    </div>
+  </section>
+  <section class="faq-section container service-faq" aria-labelledby="service-faq-heading">
+    <div><p class="eyebrow"><span class="square"></span> GOOD QUESTIONS</p><h2 id="service-faq-heading">{service.title} FAQs.</h2></div>
+    <div class="faq-list">
+      {page.faqs.map(faq => <details><summary>{faq.question}<Icon name="plus" size={20} /></summary><p>{faq.answer}</p></details>)}
+    </div>
+  </section>
+  <section class="contact-banner container" aria-labelledby="service-next-step">
+    <div><p class="eyebrow"><span class="square"></span> YOUR NEXT CHAPTER</p><h2 id="service-next-step">Let’s talk<br />{service.title.toLowerCase()}.</h2></div>
+    <div class="contact-banner-action"><p>Tell us what you need. We’ll help you find a practical starting point.</p><a class="button button-dark" href={contactUrl}>Discuss your project <Icon name="arrow" size={19} /></a></div>
+  </section>
+</Layout>
+
+<style>
+  .service-scope { display: grid; gap: 28px; }
+  .service-pricing-link { margin-top: 24px; }
+  .service-faq { padding-top: 60px; }
+</style>

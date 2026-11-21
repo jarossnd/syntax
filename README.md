@@ -15,6 +15,8 @@ npm run dev
 
 Open the local URL printed by Astro. The site includes Home (`/`), Services and pricing (`/services/`), Get Help (`/get-help/`), Contact (`/contact/`), and a custom 404 page.
 
+Dedicated service pages cover Managed IT (`/services/managed-it/`), IT consulting (`/services/consulting/`), Web development (`/services/web-development/`), SEO (`/services/seo/`), and Web hosting (`/services/hosting/`). Each has its own title, description, scope, process, FAQs, and contact link that preselects the service. The services overview retains its existing section anchors and pricing.
+
 ```sh
 npm run check
 npm run build
@@ -26,9 +28,12 @@ The production build is static HTML in `dist/`. No server adapter, database, ext
 ## Content
 
 - Shared service descriptions and retainer plans: `src/data/services.ts`
+- Dedicated service-page content: the `page` fields in `src/data/services.ts`, rendered as static routes by `src/pages/services/[service].astro`
 - Hourly rates, hosting plans, billing policies, and commitment terms: `src/pages/services.astro`
 - Global styles and responsive layouts: `src/styles/global.css`
 - Shared metadata, navigation, and footer: `src/layouts/Layout.astro`
+
+Each main page supplies a descriptive title and one H1 naming its service or purpose. Marketing titles identify Syntax and include Fargo–Moorhead where relevant; the homepage keeps its brand tagline in the supporting copy.
 
 The shared footer links to the Syntax Facebook page at `https://www.facebook.com/synatxinc`.
 

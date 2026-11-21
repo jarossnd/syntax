@@ -4,12 +4,12 @@ import Icon from '../components/Icon.astro';
 import ContactBanner from '../components/ContactBanner.astro';
 import { services } from '../data/services';
 ---
-<Layout title="Syntax — Technology, with purpose." description="Managed IT, consulting, web development, SEO, and hosting for small and growing businesses. Based in Fargo–Moorhead. Built around you.">
+<Layout title="Managed IT & Web Development in Fargo–Moorhead | Syntax" description="Managed IT, consulting, web development, SEO, and hosting for small and growing businesses. Based in Fargo–Moorhead. Built around you.">
   <section class="hero container">
     <div class="hero-copy">
       <p class="eyebrow"><span class="square"></span> TECHNOLOGY, WITH PURPOSE.</p>
-      <h1>Less friction.<br />More forward<span class="accent">.</span></h1>
-      <p class="hero-description">Your technology should move your business ahead.<br class="desktop-break" /> We make sure it does.</p>
+      <h1>Managed IT.<br />Web development<span class="accent">.</span></h1>
+      <p class="hero-description">Less friction. More forward.<br class="desktop-break" /> Practical IT and web services for businesses in Fargo–Moorhead and remotely.</p>
       <div class="button-row">
         <a class="button button-dark" href="/services/">Explore our services <Icon name="arrow" size={19} /></a>
         <a class="text-link" href="/contact/">Let’s talk <Icon name="arrow" size={18} /></a>
@@ -40,12 +40,12 @@ import { services } from '../data/services';
 
   <section class="section container" aria-labelledby="services-heading">
     <div class="section-heading">
-      <div><p class="eyebrow"><span class="square"></span> WHAT WE DO</p><h2 id="services-heading">Your business is complex.<br />Your IT partner shouldn’t be.</h2></div>
+      <div><p class="eyebrow"><span class="square"></span> WHAT WE DO</p><h2 id="services-heading">IT, websites, and growth.<br />One technology partner.</h2></div>
       <p>From the systems behind your team to the website in front of your customers. We connect the dots.</p>
     </div>
     <div class="service-grid">
       {services.map(service => (
-        <a class="service-card" href={`/services/#${service.id}`}>
+        <a class="service-card" href={`/services/${service.id}/`}>
           <div class="card-top"><Icon name={service.icon} size={29} /><span class="mini-index">/{service.number}</span></div>
           <h3>{service.title}</h3>
           <p>{service.short}</p>

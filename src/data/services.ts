@@ -7,6 +7,28 @@ export const services = [
     short: 'Less downtime. Fewer headaches.',
     description: 'Keep your everyday technology working for your people, not against them. Proactive maintenance and practical support help you stay focused on the work that matters.',
     features: ['IT troubleshooting & ongoing maintenance', 'Software patching & security upkeep', 'Microsoft 365 & Google Workspace administration'],
+    page: {
+      title: 'Managed IT Support in Fargo–Moorhead | Syntax',
+      description: 'Managed IT support for small and growing businesses in Fargo–Moorhead and remotely. Explore maintenance, software patching, and Microsoft 365 administration.',
+      audience: 'For small and growing businesses that need ongoing technology support without building an internal IT department. If recurring issues interrupt your team or routine maintenance keeps slipping, an ongoing partnership can help bring those tasks into a practical plan.',
+      scope: [
+        { title: 'Everyday troubleshooting', description: 'Bring us the device, application, or access issues slowing down your team. We work with you to understand the problem, prioritize its business impact, and agree on the next step.' },
+        { title: 'Maintenance and patching', description: 'Plan routine software updates and security upkeep around the systems your business uses. The supported devices, applications, and maintenance responsibilities are confirmed in your agreement.' },
+        { title: 'Workspace administration', description: 'Get help administering Microsoft 365 or Google Workspace as your team changes. We can discuss account access, software administration, and the recurring tasks that need a dependable owner.' },
+      ],
+      steps: [
+        { title: 'Understand your setup.', description: 'Tell us about your team, existing systems, recurring issues, and current support arrangements. We identify where help would make the biggest difference.' },
+        { title: 'Agree on priorities.', description: 'Define the supported technology, maintenance work, available hours, and response expectations before starting an ongoing arrangement.' },
+        { title: 'Keep work moving.', description: 'Use the agreed support process for new issues and review priorities as your business changes. Additional work follows your plan’s terms.' },
+      ],
+      pricing: 'Monthly partnerships and on-demand support are available. Compare included hours, response terms, and overage rates on our pricing page. Hosting and third-party costs are separate unless your agreement specifies otherwise.',
+      pricingAnchor: 'pricing',
+      faqs: [
+        { question: 'Can I request help without a monthly plan?', answer: 'Yes. On-demand support is billed by the hour. An ongoing partnership may be a better fit when you need regular maintenance or a consistent allocation of support time.' },
+        { question: 'Is support available around the clock?', answer: 'Availability and response times follow your service agreement. Published SLA times describe response, not resolution; submitting a request does not guarantee an immediate response or 24/7 coverage.' },
+        { question: 'Do you provide on-site support?', answer: 'On-site visits are available within Fargo–Moorhead with a two-hour minimum charge. We also work remotely with businesses elsewhere. Contact us to discuss your location and the support you need.' },
+      ],
+    },
   },
   {
     id: 'consulting',
@@ -16,6 +38,28 @@ export const services = [
     short: 'A clear plan for what comes next.',
     description: 'Make confident technology decisions with a partner who sees the whole picture. From your next migration to your long-term roadmap, turn complexity into a practical plan.',
     features: ['Cloud planning & systems migrations', 'Technology roadmaps & vendor selection', 'Fractional CTO & architectural guidance'],
+    page: {
+      title: 'IT Consulting in Fargo–Moorhead | Syntax',
+      description: 'Practical IT consulting for Fargo–Moorhead businesses and remote teams. Plan cloud migrations, compare vendors, and build a technology roadmap with Syntax.',
+      audience: 'For business owners and teams facing a technology decision, a migration, or a growing set of disconnected systems. Get a sounding board and practical direction when you need specialist guidance but do not need a full-time technology leader.',
+      scope: [
+        { title: 'Cloud and migration planning', description: 'Talk through the systems you use today, what needs to move, and the dependencies that could affect the transition. Define the scope and priorities before committing to a migration.' },
+        { title: 'Roadmaps and vendor decisions', description: 'Connect technology choices to business goals. Compare options around your requirements, budget, existing tools, and maintenance needs rather than choosing software in isolation.' },
+        { title: 'Fractional CTO guidance', description: 'Bring architectural questions and long-term planning into a focused conversation. We help turn competing priorities into an actionable direction for your systems and development work.' },
+      ],
+      steps: [
+        { title: 'Start with the decision.', description: 'Describe the business problem, the options you are considering, and any deadlines. Share the constraints that will shape the recommendation.' },
+        { title: 'Map the trade-offs.', description: 'Review requirements, dependencies, and alternatives together. Agree on the planning or implementation work needed to move forward.' },
+        { title: 'Choose the next step.', description: 'Turn the discussion into agreed priorities and scope. Implementation or ongoing guidance can be arranged around the work your business needs.' },
+      ],
+      pricing: 'Consulting is available by the hour or through an ongoing partnership. The applicable tier depends on the work, from systems and cloud projects to fractional CTO strategy. Review the rates and confirm scope with us before work begins.',
+      pricingAnchor: 'hourly-heading',
+      faqs: [
+        { question: 'Can you help with a single technology decision?', answer: 'Yes. Hourly consulting can address a focused question or project. You do not have to commit to an ongoing partnership to discuss a migration, vendor choice, or architecture decision.' },
+        { question: 'Can planning lead into implementation?', answer: 'Yes. Our services include systems migrations, cloud setup, and web development. We agree on the implementation scope and pricing separately so the next stage is clear before it starts.' },
+        { question: 'Do you work with remote teams?', answer: 'Yes. Syntax is based in Fargo–Moorhead and works remotely with businesses elsewhere. Tell us about your team, systems, and collaboration needs when you contact us.' },
+      ],
+    },
   },
   {
     id: 'web-development',
@@ -25,6 +69,28 @@ export const services = [
     short: 'Built to do more than look good.',
     description: 'Fast, thoughtful websites built around your business. Give your customers a better experience with purposeful design, clean development, and room to grow.',
     features: ['Custom business websites & rebuilds', 'Responsive, performance-minded development', 'API integrations & ongoing improvements'],
+    page: {
+      title: 'Web Development in Fargo–Moorhead | Syntax',
+      description: 'Custom business websites, rebuilds, and API integrations for Fargo–Moorhead businesses and remote teams. Discuss responsive web development with Syntax.',
+      audience: 'For businesses launching a website, replacing an outdated site, or improving a site that no longer supports how they work. We focus on what visitors need to understand and do, alongside the practical needs of the team maintaining the website.',
+      scope: [
+        { title: 'Business websites and rebuilds', description: 'Build around your services, audience, and goals rather than a collection of disconnected pages. Discuss the content, structure, and functionality needed to give customers a clear path to the next step.' },
+        { title: 'Responsive development', description: 'Plan how the website works across phones, tablets, and larger screens. Performance-minded development keeps page structure and technical choices connected to the visitor experience.' },
+        { title: 'Integrations and improvements', description: 'Extend an existing website with agreed features or API integrations. We discuss the systems involved, access requirements, and ongoing maintenance before defining the implementation.' },
+      ],
+      steps: [
+        { title: 'Define the website’s job.', description: 'Tell us about your audience, current site, desired features, and available content. Identify what a successful project needs to accomplish.' },
+        { title: 'Set scope and pricing.', description: 'Agree on the pages, functionality, responsibilities, and pricing after discovery. Separate essential launch work from possible later improvements.' },
+        { title: 'Build and review.', description: 'Develop the agreed website and review it against the project scope. Discuss hosting and ongoing updates so ownership after launch is clear.' },
+      ],
+      pricing: 'Complete website builds are custom-quoted after discovery, with fixed-bid quotes available. Individual improvements and integrations can be discussed as hourly work or part of a partnership. Hosting and third-party costs are separate unless specified.',
+      pricingAnchor: 'hourly-heading',
+      faqs: [
+        { question: 'Can you improve an existing website?', answer: 'Yes. Rebuilds, feature enhancements, routine edits, and API integrations are within our service offerings. We first discuss the existing site and the change you need to determine an appropriate scope.' },
+        { question: 'How much does a new website cost?', answer: 'A complete website is custom-quoted after discovery. The pages, functionality, integrations, and content needs determine the scope. We outline pricing before work begins rather than publishing a one-size-fits-all build price.' },
+        { question: 'Is hosting included in a website project?', answer: 'Hosting fees, domains, and third-party software are billed separately unless your agreement specifies otherwise. Managed hosting is available, and we can discuss the right setup alongside your website project.' },
+      ],
+    },
   },
   {
     id: 'seo',
@@ -34,6 +100,28 @@ export const services = [
     short: 'Get found by the right people.',
     description: 'Help search engines understand your website and customers find what they need. Build a stronger foundation for organic visibility without shortcuts or ranking promises.',
     features: ['Technical SEO & site structure', 'On-page content & metadata optimization', 'Local search foundations & performance reviews'],
+    page: {
+      title: 'SEO Services in Fargo–Moorhead | Syntax',
+      description: 'Technical, on-page, and local SEO services for Fargo–Moorhead businesses. Improve site structure, metadata, and content with a practical plan from Syntax.',
+      audience: 'For businesses whose website does not clearly explain their services to search engines or prospective customers. Whether your priority is local discovery or a stronger technical foundation, start with the pages and search needs that matter to your business.',
+      scope: [
+        { title: 'Technical SEO foundations', description: 'Review how search engines can discover and understand your pages. Site structure and technical issues are considered alongside the website’s existing platform and the changes it can support.' },
+        { title: 'Content and metadata', description: 'Align page titles, headings, descriptions, and content with what the page actually offers. Clear service pages and useful internal links help visitors find relevant information without relying on keyword repetition.' },
+        { title: 'Local search and review', description: 'Discuss your genuine service area and business information as part of local search foundations. Performance reviews help identify where further work may be useful rather than treating SEO as a one-time switch.' },
+      ],
+      steps: [
+        { title: 'Identify the search goal.', description: 'Share your services, target customers, existing website, and the visibility problem you want to address. Agree on the scope of the review.' },
+        { title: 'Prioritize useful changes.', description: 'Separate technical obstacles from content opportunities. Focus the plan on changes that accurately reflect your business and improve the website’s usefulness.' },
+        { title: 'Review progress.', description: 'Implement the agreed improvements and review available performance information. Discuss additional work based on what the site needs, not a promise of a particular ranking.' },
+      ],
+      pricing: 'SEO work is custom-quoted around your goals and the scope of your website. Contact us for discovery and a practical proposal. Our services overview explains the wider support and development options if your SEO work also requires website changes.',
+      pricingAnchor: 'seo',
+      faqs: [
+        { question: 'Do you guarantee a first-place ranking?', answer: 'No. Syntax does not promise rankings. SEO work focuses on technical foundations, useful content, and accurate business information; search outcomes also depend on competition and factors outside the website.' },
+        { question: 'Can you help with local SEO in Fargo–Moorhead?', answer: 'Yes. Local search foundations are part of our SEO offering. We discuss your actual service area and business details so the website represents where and how you serve customers.' },
+        { question: 'Does SEO include rebuilding my website?', answer: 'Not automatically. SEO and complete website builds are custom-quoted. If the review identifies development work, we discuss those changes and their scope before adding them to a project.' },
+      ],
+    },
   },
   {
     id: 'hosting',
@@ -43,6 +131,28 @@ export const services = [
     short: 'A solid home for your website.',
     description: 'Take the upkeep off your plate with managed hosting that fits your site. Start with the essentials or talk through a more demanding cloud setup.',
     features: ['Managed SSL & automated backups', 'CDN, staging & security options by plan', 'Business & custom cloud hosting'],
+    page: {
+      title: 'Managed Web Hosting in Fargo–Moorhead | Syntax',
+      description: 'Managed web hosting from Syntax for Fargo–Moorhead businesses and beyond. Compare SSL, backups, business hosting, and custom cloud options by plan.',
+      audience: 'For businesses that want a managed home for their website rather than another infrastructure task to own. The right plan depends on your site, its operational needs, and whether a straightforward hosting setup or a more tailored environment is appropriate.',
+      scope: [
+        { title: 'Essential website hosting', description: 'Starter hosting includes managed SSL, daily automated backups, uptime monitoring, and a standard CDN. Discuss your existing site and requirements before choosing a plan.' },
+        { title: 'Business hosting options', description: 'The Business plan adds a high-performance VPS, staging, daily off-site backups, WAF security, and priority uptime response. These options are plan-specific rather than included with every hosting arrangement.' },
+        { title: 'Custom cloud environments', description: 'For more demanding sites, discuss dedicated cloud resources, load balancing, compliance requirements, and disaster recovery. A custom setup needs an agreed scope rather than assumptions about what standard hosting covers.' },
+      ],
+      steps: [
+        { title: 'Review the website.', description: 'Tell us how your site runs today, who maintains it, and any infrastructure concerns. Identify the hosting requirements and existing dependencies.' },
+        { title: 'Choose the right scope.', description: 'Compare standard plans or discuss a custom environment. Confirm responsibilities, any migration work, and separate consulting needs before proceeding.' },
+        { title: 'Plan ongoing upkeep.', description: 'Agree on hosting responsibilities and how to request help. Website edits, software licenses, and consulting hours follow their own agreed terms.' },
+      ],
+      pricing: 'Compare Starter, Business, and Enterprise / Custom options on the hosting pricing section. Hosting costs are billed separately from consulting hours. The included infrastructure features vary by plan, and custom requirements should be discussed before selection.',
+      pricingAnchor: 'hosting-plans',
+      faqs: [
+        { question: 'Are website edits included in hosting?', answer: 'Hosting infrastructure is separate from consulting hours. Routine website edits and development work can be arranged through support or a partnership; confirm the included work in your agreement.' },
+        { question: 'Does every plan include staging and WAF security?', answer: 'No. Staging and WAF security are listed in the Business Hosting plan. Compare the published features for each plan and discuss any additional needs before choosing hosting.' },
+        { question: 'Can you help move my existing website?', answer: 'Systems migrations and hosting support are part of our wider services. Contact us with your current setup so we can discuss compatibility, migration scope, and any consulting work needed.' },
+      ],
+    },
   },
 ] as const;
 

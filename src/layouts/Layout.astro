@@ -5,6 +5,7 @@ import '../styles/global.css';
 import Wordmark from '../components/Wordmark.astro';
 import Icon from '../components/Icon.astro';
 import AnalyticsConsent from '../components/AnalyticsConsent.astro';
+import { services } from '../data/services';
 
 interface Props {
   title: string;
@@ -74,9 +75,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
           </nav>
           <nav aria-label="Service navigation">
             <span class="eyebrow">WHAT WE DO</span>
-            <a href="/services/#managed-it">Managed IT & consulting</a>
-            <a href="/services/#web-development">Web development</a>
-            <a href="/services/#seo">SEO & web hosting</a>
+            {services.map(service => <a href={`/services/${service.id}/`}>{service.title}</a>)}
           </nav>
         </div>
       </div>
