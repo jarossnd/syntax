@@ -14,7 +14,7 @@ interface Props {
   noindex?: boolean;
 }
 const { title, description, noindex = false } = Astro.props;
-const clientPortalUrl = 'https://portal.syntax.dev';
+const clientPortalUrl = business.clientPortalUrl;
 const links = [
   { href: '/', label: 'Home' },
   { href: '/services/', label: 'Services' },
