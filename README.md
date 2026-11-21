@@ -112,6 +112,8 @@ The Zoho code form uses the supplied `https://assist.zoho.com/login/embed-remote
 
 Zoho is for one-off sessions, not the ongoing client portal. Test the embedded join form and fallback with a technician-issued code, customer permissions, and any required app download before relying on it; displaying a join form does not verify a completed remote connection. Continue using AlgaPSA for ticket tracking and Level for managed devices.
 
+The session-code disclosure shows a plus when collapsed and a minus when expanded, using the native `<details>` state even without JavaScript.
+
 Level's documented remote-control workflow requires an installed, online agent and a technician starting the session from the device list. There is no Level API, admin login, public installer, enrollment key, or remote-control embed in this website.
 
 As of November 2026, Level's official **Ad-hoc Remote Control / Quick Support** feature request is marked **Under consideration**. No Level public session-code or quick-connect website flow has been verified. Use Zoho Assist for quick sessions unless Level releases and documents a suitable option; a device enrollment link is not a one-time remote-support session.

@@ -41,7 +41,7 @@ const quickConnectUrl = 'https://assist.zoho.com/client/syntax';
       </ul>
       <div class="help-card-action">
         <details class="quick-connect" id="quick-connect">
-          <summary class="button button-outline">Enter session code <Icon name="plus" size={18} /></summary>
+          <summary class="button button-outline">Enter session code <span class="quick-connect-expand"><Icon name="plus" size={18} /></span><span class="quick-connect-collapse"><Icon name="minus" size={18} /></span></summary>
           <template id="quick-connect-template">
             <iframe id="quick-connect-frame" title="Join a Syntax remote session with Zoho Assist" width="100%" height="150" src="https://assist.zoho.com/login/embed-remote-support.jsp"></iframe>
           </template>
@@ -100,6 +100,8 @@ const quickConnectUrl = 'https://assist.zoho.com/client/syntax';
 <style>
   .quick-connect summary { list-style: none; cursor: pointer; }
   .quick-connect summary::-webkit-details-marker { display: none; }
-  .quick-connect[open] summary svg { transform: rotate(45deg); }
+  .quick-connect-expand { display: inline-flex; }
+  .quick-connect-collapse, .quick-connect[open] .quick-connect-expand { display: none; }
+  .quick-connect[open] .quick-connect-collapse { display: inline-flex; }
   .quick-connect iframe { display: block; margin-top: 16px; border: 0; background: #fff; }
 </style>
