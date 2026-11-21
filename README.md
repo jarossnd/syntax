@@ -32,6 +32,7 @@ The production build is static HTML in `dist/`. No server adapter, database, ext
 - Hourly rates, hosting plans, billing policies, and commitment terms: `src/pages/services.astro`
 - Global styles and responsive layouts: `src/styles/global.css`
 - Shared metadata, navigation, and footer: `src/layouts/Layout.astro`
+- Public business contact details, hours, and on-site service areas: `src/data/business.ts`
 
 Each main page supplies a descriptive title and one H1 naming its service or purpose. Marketing titles identify Syntax and include Fargo–Moorhead where relevant; the homepage keeps its brand tagline in the supporting copy.
 
@@ -42,6 +43,29 @@ Reusable square icon SVGs have transparent backgrounds and outlined artwork (no 
 Wide "syntax." wordmarks are also available for [white backgrounds](public/syntax-logo.svg) and [dark backgrounds](public/syntax-logo-dark.svg). They use the site's Manrope 800 lettering and spacing, converted to vector paths, with transparent backgrounds and an orange period.
 
 Pricing follows the supplied specification in USD. SEO and complete website builds are custom-quoted. Retainers require an initial three-month commitment; hosting and third-party costs are separate unless specified.
+
+## Public business information
+
+The contact page and shared footer use `src/data/business.ts` for the public email, service areas, and business hours. Syntax visits customers in Fargo, ND and Moorhead, MN, with remote partnerships also available. Business hours are Monday–Friday, 8 am–5 pm local Central Time (CST/CDT); support availability and response times still follow each service agreement.
+
+No street address or phone number is published. Syntax is a service-area business without a public storefront. In the existing Google Business Profile:
+
+- Use the real-world business name **Syntax**, website `https://syntax.dev`, and the same business hours.
+- Set Fargo and Moorhead as the actual on-site service areas and hide the business address from customers. Do not add a virtual office or treat remote reach as a local service area.
+- Choose the most accurate available primary category and add only services actually offered.
+- Keep holiday hours current, add genuine business photos, and request honest reviews without incentives.
+
+A public Google Maps profile URL has not been supplied, so the website does not link to a guessed listing. The management Profile ID alone is not used as a public Maps URL. These website changes do not update the Google account.
+
+Google's guidance: [Service-area businesses](https://support.google.com/business/answer/9157481) and [Business representation guidelines](https://support.google.com/business/answer/3038177).
+
+## Canonical URLs and sitemap
+
+The production URL is `https://syntax.dev`, configured in `astro.config.mjs`. Indexable pages emit absolute canonical and Open Graph URLs with trailing slashes and without query parameters or fragments. For example, `/contact/?plan=Managed%20IT` canonicalizes to `https://syntax.dev/contact/`; the selected service still works normally. Local development and preview hosts also emit production canonical URLs.
+
+`@astrojs/sitemap` generates `dist/sitemap-index.xml` and `dist/sitemap-0.xml` during `npm run build`, including all five dedicated service pages. The 404 page is excluded and emits `noindex` without a canonical URL. `src/pages/robots.txt.ts` generates crawl rules and a sitemap declaration from the same production URL; the shared layout also links to the sitemap index.
+
+Sitemaps are generated at build time, not by the dev server. Use `npm run build` and `npm run preview` to test their HTTP responses. After deployment, submit `https://syntax.dev/sitemap-index.xml` in Google Search Console. If the primary domain changes, update `site` and rebuild; canonical tags do not configure DNS or redirect alternate hosts.
 
 ## Analytics and consent
 
@@ -106,10 +130,10 @@ Official references:
 
 ## Before launch
 
-- Supply the public email, optional phone number, and any booking link.
+- Review the public email, hours, and service areas in `src/data/business.ts`; add an optional public phone number, booking link, or verified Google Maps profile link only when supplied.
 - Confirm Formspree delivery and spam settings, then review any additional privacy/legal notice needed for handling inquiries.
 - Confirm pricing, SLA coverage/business-hour timezone, rollover terms, and service agreements.
-- Set the production `site` URL in `astro.config.mjs`, then add canonical URLs and a sitemap using that verified domain.
+- Confirm `https://syntax.dev` is the primary production domain, redirect alternate hosts in Netlify, and submit the generated sitemap in Google Search Console.
 - Review final content and any required legal/privacy pages.
 
 ## Netlify

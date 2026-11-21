@@ -6,12 +6,14 @@ import Wordmark from '../components/Wordmark.astro';
 import Icon from '../components/Icon.astro';
 import AnalyticsConsent from '../components/AnalyticsConsent.astro';
 import { services } from '../data/services';
+import { business } from '../data/business';
 
 interface Props {
   title: string;
   description: string;
+  noindex?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
 const clientPortalUrl = 'https://portal.syntax.dev';
 const links = [
   { href: '/', label: 'Home' },
@@ -20,6 +22,10 @@ const links = [
   { href: '/contact/', label: 'Contact' },
 ];
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+if (!Astro.site) {
+  throw new Error('Configure the production site URL before generating SEO metadata.');
+}
+const canonicalUrl = new URL(current === '/' ? '/' : `${current}/`, Astro.site);
 ---
 <!doctype html>
 <html lang="en">
@@ -29,10 +35,13 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#ffffff" />
     <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonicalUrl.href} />}
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Syntax" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    {!noindex && <meta property="og:url" content={canonicalUrl.href} />}
     <meta name="twitter:card" content="summary" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
@@ -62,7 +71,8 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
       <div class="footer-top">
         <div>
           <Wordmark footer />
-          <p>Technology, with purpose.<br />Fargo–Moorhead & wherever you work.</p>
+          <p>Technology, with purpose.<br />On-site: {business.serviceAreas.join(' and ')}.<br />Remote partnerships available.</p>
+          <p><a href={`mailto:${business.email}`}>{business.email}</a><br />{business.hours}.</p>
         </div>
         <div class="footer-links">
           <nav aria-label="Footer navigation">
