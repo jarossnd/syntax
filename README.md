@@ -46,7 +46,7 @@ Pricing follows the supplied specification in USD. SEO and complete website buil
 - No Google script, iframe, preconnect, or tracking request is added before acceptance or after a saved rejection. With JavaScript disabled, tracking remains off.
 - The banner works locally, but Google only loads in production builds on `syntax.dev` and `www.syntax.dev`. Localhost, Netlify preview domains, and the separate client portal are not tracked by this installation.
 - On acceptance, the consent defaults are queued before the tag initialization: analytics granted, advertising storage/user data/personalization denied.
-- Revoking consent saves rejection and reloads the page to remove the running container. It does not erase existing cookies or data already collected by Google.
+- Revoking consent saves rejection and reloads the page to remove the running container; already-tracking tabs also reload when the stored choice is withdrawn. The settings panel warns about reloading and unsent forms. Revocation does not erase existing cookies or data already collected by Google.
 - There is deliberately no unconditional GTM script or `noscript` tracking iframe, because either would bypass the opt-in requirement.
 
 The container loader responds successfully, but installation alone does not verify Analytics reporting. In Google Tag Manager:
