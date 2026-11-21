@@ -71,6 +71,8 @@ Sitemaps are generated at build time, not by the dev server. Use `npm run build`
 
 `src/components/AnalyticsConsent.astro` installs Google Tag Manager container `GTM-KFDKQHCV` only after a visitor accepts analytics cookies. Reject and Accept have equal prominence; the footer's **Cookie settings** control lets visitors change their choice.
 
+The consent panel is a compact bottom-right card on desktop and fits within 12px mobile gutters. It retains 18px body text at the default browser font size and equal-width buttons with at least 44px height. On short viewports, the explanation scrolls while the heading and choices remain available.
+
 - The choice is saved in local storage under `syntax-analytics-consent`. Unknown or unreadable choices keep tracking off and display the banner; storage errors are reported.
 - No Google script, iframe, preconnect, or tracking request is added before acceptance or after a saved rejection. With JavaScript disabled, tracking remains off.
 - The banner works locally, but Google only loads in production builds on `syntax.dev` and `www.syntax.dev`. Localhost, Netlify preview domains, and the separate client portal are not tracked by this installation.
@@ -104,11 +106,15 @@ Manage notification recipients, CAPTCHA, domain restrictions, and other settings
 
 The header, mobile menu, and Get Help page link to the live AlgaPSA Client Portal at `https://portal.syntax.dev`, configured in `src/data/business.ts`. Existing clients sign in to submit and track support tickets. Page-level contact calls to action still open the inquiry form. Active navigation uses an orange underline instead of dots.
 
-The Get Help page provides a remote-assistance request link and an active AlgaPSA client portal panel. The remote-assistance link opens the existing contact form with "Remote assistance" selected; it sends an email through Formspree, not an AlgaPSA ticket, and does not initiate a remote connection. Existing clients can also request assistance through the portal. Without JavaScript, contact-form visitors can select that option themselves.
+The Get Help page separates **Ongoing support** (AlgaPSA tickets and follow-up) from **Quick remote session** (Zoho Assist, only when directed by a Syntax technician with a session code). Clients without a code are directed to AlgaPSA; first-time requests open the contact form with "Remote assistance" selected. The contact form sends email through Formspree, not an AlgaPSA ticket, and does not initiate a remote connection. Without JavaScript, contact-form visitors can select that option themselves.
+
+The Zoho code form uses the supplied `https://assist.zoho.com/login/embed-remote-support.jsp` iframe. It has an accessible title and is held in an inert template until a visitor opens **Enter session code**, so visiting the page alone does not load Zoho. Opening it loads a third-party service independently of analytics consent; closing it hides the form but does not unload the running iframe. The supplied `https://assist.zoho.com/client/syntax` session-page link is always available as a fallback, including without JavaScript. That page also offers a request form, so the website directs visitors to **Join an instant remote support session**, not **Raise Your Request**; ongoing requests belong in AlgaPSA. Do not embed technician credentials or collect session codes in the website contact form or analytics.
+
+Zoho is for one-off sessions, not the ongoing client portal. Test the embedded join form and fallback with a technician-issued code, customer permissions, and any required app download before relying on it; displaying a join form does not verify a completed remote connection. Continue using AlgaPSA for ticket tracking and Level for managed devices.
 
 Level's documented remote-control workflow requires an installed, online agent and a technician starting the session from the device list. There is no Level API, admin login, public installer, enrollment key, or remote-control embed in this website.
 
-As of November 2026, Level's official **Ad-hoc Remote Control / Quick Support** feature request is marked **Under consideration**. No public session-code or quick-connect website flow has been verified. Keep the coordinated request workflow unless Level releases and documents a suitable option; a device enrollment link is not a one-time remote-support session.
+As of November 2026, Level's official **Ad-hoc Remote Control / Quick Support** feature request is marked **Under consideration**. No Level public session-code or quick-connect website flow has been verified. Use Zoho Assist for quick sessions unless Level releases and documents a suitable option; a device enrollment link is not a one-time remote-support session.
 
 As of November 2026, Level lists all features on its free account for the first 10 devices, but does not include ticketing on any plan. Its pricing says adding an 11th device starts billing for the entire fleet, not only the extra device. Do not publish enrollment links or automatically enroll devices from the public site.
 
@@ -129,6 +135,7 @@ Official references:
 - [Why Level does not include ticketing](https://level.io/why-no-ticketing-or-psa)
 - [Level ad-hoc remote control / quick support feature status](https://feedback.level.io/feedback/ad-hoc-remote-control-quick-support-ajmjqe)
 - [AlgaPSA support and documentation](https://www.nineminds.com/support)
+- [Zoho Assist customer widget](https://www.zoho.com/assist/help/remote-support/customer-widget.html)
 
 ## Before launch
 

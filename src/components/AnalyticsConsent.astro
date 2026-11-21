@@ -3,9 +3,8 @@
 <section class="analytics-consent" id="analytics-consent" aria-labelledby="analytics-consent-title" hidden>
   <h2 id="analytics-consent-title">Allow analytics cookies?</h2>
   <p tabindex="0">
-    Google Analytics uses cookies and sends website usage data to Google.
-    It loads only if you accept. The site works either way.
-    <a href="https://policies.google.com/privacy">Google's privacy policy</a>
+    If you accept, cookies send usage data to Google Analytics.
+    The site works either way.{' '}<a href="https://policies.google.com/privacy">Google's privacy policy</a>
   </p>
   <div class="consent-actions">
     <button class="button button-outline" id="analytics-reject" type="button">Reject</button>
@@ -148,13 +147,13 @@
 <style>
   .analytics-settings { border: 0; padding: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 4px; }
   .analytics-settings:hover { color: var(--accent-hover); }
-  .analytics-consent { position: fixed; z-index: 30; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; width: min(960px, calc(100% - 40px)); max-height: calc(100dvh - 40px); overflow: hidden; padding: 24px; background: #fff; border: 1px solid var(--line); box-shadow: 0 8px 36px #18181826; color: var(--ink); }
-  .analytics-consent h2 { font-size: 24px; flex-shrink: 0; }
-  .analytics-consent p { margin-top: 14px; font-size: 1.125rem; line-height: 1.65; }
+  .analytics-consent { position: fixed; z-index: 30; bottom: 12px; right: 12px; display: flex; flex-direction: column; width: min(560px, calc(100% - 24px)); max-height: calc(100dvh - 24px); overflow: hidden; padding: 12px; background: #fff; border: 1px solid var(--line); box-shadow: 0 4px 20px #1818181a; color: var(--ink); }
+  .analytics-consent h2 { font-size: 1.25rem; flex-shrink: 0; }
+  .analytics-consent p { margin-top: 6px; font-size: 1.125rem; line-height: 1.5; }
   .analytics-consent > p:not(.consent-status) { min-height: 0; overflow-y: auto; }
   .analytics-consent a { text-decoration: underline; text-underline-offset: 3px; }
-  .consent-actions { display: flex; flex-wrap: wrap; flex-shrink: 0; gap: 12px; margin-top: 20px; }
-  .consent-actions .button { min-width: 120px; }
+  .consent-actions { display: flex; flex-shrink: 0; gap: 12px; margin-top: 8px; }
+  .consent-actions .button { flex: 1; min-width: 0; min-height: 44px; padding: 8px 16px; }
   .consent-status { color: var(--accent-hover); flex-shrink: 0; }
   .analytics-settings[hidden], .analytics-consent[hidden], .consent-status[hidden] { display: none; }
 </style>
