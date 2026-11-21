@@ -21,7 +21,7 @@ npm run build
 npm run preview
 ```
 
-The production build is static HTML in `dist/`. No server adapter, database, external font requests, or client framework is required. The contact page has a small script to preselect a plan from pricing links. Navigation and FAQs use native HTML.
+The production build is static HTML in `dist/`. No server adapter, database, external font requests, or client framework is required. Small scripts handle analytics consent and contact-plan selection. Navigation and FAQs use native HTML.
 
 ## Content
 
@@ -30,7 +30,34 @@ The production build is static HTML in `dist/`. No server adapter, database, ext
 - Global styles and responsive layouts: `src/styles/global.css`
 - Shared metadata, navigation, and footer: `src/layouts/Layout.astro`
 
+The shared footer links to the Syntax Facebook page at `https://www.facebook.com/synatxinc`.
+
+Reusable square icon SVGs have transparent backgrounds and outlined artwork (no font dependencies): [light-background version](public/syntax-icon.svg) and [dark-background version](public/syntax-icon-dark.svg). Both use a 1:1 viewBox and scale without losing quality.
+
+Wide "syntax." wordmarks are also available for [white backgrounds](public/syntax-logo.svg) and [dark backgrounds](public/syntax-logo-dark.svg). They use the site's Manrope 800 lettering and spacing, converted to vector paths, with transparent backgrounds and an orange period.
+
 Pricing follows the supplied specification in USD. SEO and complete website builds are custom-quoted. Retainers require an initial three-month commitment; hosting and third-party costs are separate unless specified.
+
+## Analytics and consent
+
+`src/components/AnalyticsConsent.astro` installs Google Tag Manager container `GTM-KFDKQHCV` only after a visitor accepts analytics cookies. Reject and Accept have equal prominence; the footer's **Cookie settings** control lets visitors change their choice.
+
+- The choice is saved in local storage under `syntax-analytics-consent`. Unknown or unreadable choices keep tracking off and display the banner; storage errors are reported.
+- No Google script, iframe, preconnect, or tracking request is added before acceptance or after a saved rejection. With JavaScript disabled, tracking remains off.
+- The banner works locally, but Google only loads in production builds on `syntax.dev` and `www.syntax.dev`. Localhost, Netlify preview domains, and the separate client portal are not tracked by this installation.
+- On acceptance, the consent defaults are queued before the tag initialization: analytics granted, advertising storage/user data/personalization denied.
+- Revoking consent saves rejection and reloads the page to remove the running container. It does not erase existing cookies or data already collected by Google.
+- There is deliberately no unconditional GTM script or `noscript` tracking iframe, because either would bypass the opt-in requirement.
+
+The container loader responds successfully, but installation alone does not verify Analytics reporting. In Google Tag Manager:
+
+1. Check whether a Google Analytics destination/Google tag is already configured. If not, add one using the GA4 web stream's `G-…` Measurement ID or its associated Google Tag ID, not the `GTM-…` container ID.
+2. Use **Initialization - All Pages** for that tag. If you add a consent template, run it on **Consent Initialization** and preserve analytics consent with all advertising consent denied; do not override the website's choices.
+3. Keep the container limited to analytics. Advertising and unrelated third-party tags require separate consent and configuration.
+4. Do not send names, email addresses, company names, contact messages, or other personal information to Analytics. Disable enhanced-measurement form interactions until the Formspree flow is reviewed; a form-submit event is not proof of a delivered inquiry.
+5. Use **Preview / Tag Assistant** to test acceptance and rejection, then **Submit / Publish** the container. After deploying the website, accept analytics and check GA4 Realtime or DebugView.
+
+Review your business's privacy notice and applicable consent requirements before launch. Google's privacy policy linked from the banner is not a substitute for your own privacy notice.
 
 ## Contact form
 

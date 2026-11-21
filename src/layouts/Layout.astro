@@ -4,6 +4,7 @@ import '@fontsource-variable/dm-sans';
 import '../styles/global.css';
 import Wordmark from '../components/Wordmark.astro';
 import Icon from '../components/Icon.astro';
+import AnalyticsConsent from '../components/AnalyticsConsent.astro';
 
 interface Props {
   title: string;
@@ -69,6 +70,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
             <a href="/services/">Services</a>
             <a href="/get-help/">Get help</a>
             <a href="/contact/">Contact us</a>
+            <a href="https://www.facebook.com/synatxinc">Facebook</a>
           </nav>
           <nav aria-label="Service navigation">
             <span class="eyebrow">WHAT WE DO</span>
@@ -80,6 +82,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
       </div>
       <div class="footer-bottom">
         <span>© {new Date().getFullYear()} Syntax Inc. All rights reserved.</span>
+        <AnalyticsConsent />
         <span class="footer-signoff"><span class="square"></span> GOOD PEOPLE. GOOD TECHNOLOGY.</span>
       </div>
     </footer>

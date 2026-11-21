@@ -1,0 +1,149 @@
+<button class="analytics-settings" id="analytics-settings" type="button" hidden>Cookie settings</button>
+
+<section class="analytics-consent" id="analytics-consent" aria-labelledby="analytics-consent-title" hidden>
+  <h2 id="analytics-consent-title">Allow analytics cookies?</h2>
+  <p>
+    With your permission, we use Google Analytics cookies to understand visits and improve this website.
+    Usage information is sent to Google. Tracking stays off unless you accept, and the site works either way.
+    <a href="https://policies.google.com/privacy">Google’s privacy policy</a>
+  </p>
+  <div class="consent-actions">
+    <button class="button button-outline" id="analytics-reject" type="button">Reject</button>
+    <button class="button button-outline" id="analytics-accept" type="button">Accept</button>
+  </div>
+  <p class="consent-status" id="analytics-consent-status" role="alert" hidden></p>
+</section>
+
+<script>
+  type Consent = 'accepted' | 'rejected';
+
+  declare global {
+    interface Window {
+      dataLayer?: (IArguments | Record<string, unknown>)[];
+      gtag?: (...args: unknown[]) => void;
+    }
+  }
+
+  const storageKey = 'syntax-analytics-consent';
+  const containerId = 'GTM-KFDKQHCV';
+  const trackingAllowed = import.meta.env.PROD
+    && ['syntax.dev', 'www.syntax.dev'].includes(window.location.hostname);
+  const panel = document.querySelector<HTMLElement>('#analytics-consent');
+  const status = document.querySelector<HTMLElement>('#analytics-consent-status');
+  const settings = document.querySelector<HTMLButtonElement>('#analytics-settings');
+  const accept = document.querySelector<HTMLButtonElement>('#analytics-accept');
+  const reject = document.querySelector<HTMLButtonElement>('#analytics-reject');
+
+  if (!panel || !status || !settings || !accept || !reject) {
+    throw new Error('Analytics consent controls are missing.');
+  }
+
+  const controls = { panel, status, settings, accept, reject };
+  let tagManagerStarted = false;
+  let openedFromSettings = false;
+
+  function reportStorageError(error: unknown) {
+    if (!(error instanceof DOMException)
+      || !['SecurityError', 'QuotaExceededError'].includes(error.name)) {
+      throw error;
+    }
+    console.error('Unable to store analytics consent.', error);
+    controls.status.textContent = 'Your browser blocked saving this choice. Please allow site storage and try again.';
+    controls.status.hidden = false;
+    controls.panel.hidden = false;
+  }
+
+  function readConsent(): Consent | null {
+    try {
+      const value = localStorage.getItem(storageKey);
+      if (value === 'accepted' || value === 'rejected' || value === null) return value;
+      console.warn('Unrecognized analytics consent preference.');
+      controls.status.textContent = 'Your saved preference was not recognized. Please choose again.';
+      controls.status.hidden = false;
+      return null;
+    } catch (error) {
+      reportStorageError(error);
+      return null;
+    }
+  }
+
+  function saveConsent(consent: Consent): boolean {
+    try {
+      localStorage.setItem(storageKey, consent);
+      return true;
+    } catch (error) {
+      reportStorageError(error);
+      return false;
+    }
+  }
+
+  function loadTagManager() {
+    if (!trackingAllowed || tagManagerStarted) return;
+    tagManagerStarted = true;
+    const dataLayer = window.dataLayer ??= [];
+    window.gtag = function (..._args: unknown[]) {
+      dataLayer.push(arguments);
+    };
+    window.gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
+    window.gtag('js', new Date());
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtm.js?id=${containerId}`;
+    script.addEventListener('error', () => {
+      console.error('Google Tag Manager could not load. Analytics may be blocked or unavailable.');
+    });
+    document.head.append(script);
+  }
+
+  function choose(consent: Consent) {
+    if (!saveConsent(consent)) {
+      if (consent === 'rejected' && tagManagerStarted) {
+        try {
+          localStorage.removeItem(storageKey);
+        } catch (error) {
+          reportStorageError(error);
+        }
+        window.location.reload();
+      }
+      return;
+    }
+    controls.panel.hidden = true;
+    controls.status.hidden = true;
+    if (openedFromSettings) controls.settings.focus();
+    if (consent === 'accepted') {
+      loadTagManager();
+    } else if (tagManagerStarted) {
+      window.location.reload();
+    }
+  }
+
+  controls.settings.hidden = false;
+  controls.settings.addEventListener('click', () => {
+    openedFromSettings = true;
+    controls.panel.hidden = false;
+    controls.reject.focus();
+  });
+  controls.accept.addEventListener('click', () => choose('accepted'));
+  controls.reject.addEventListener('click', () => choose('rejected'));
+  const consent = readConsent();
+  if (consent === 'accepted') loadTagManager();
+  controls.panel.hidden = consent !== null;
+</script>
+
+<style>
+  .analytics-settings { border: 0; padding: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 4px; }
+  .analytics-settings:hover { color: var(--accent-hover); }
+  .analytics-consent { position: fixed; z-index: 30; bottom: 20px; left: 50%; transform: translateX(-50%); width: min(960px, calc(100% - 40px)); max-height: calc(100dvh - 40px); overflow-y: auto; padding: 24px; background: #fff; border: 1px solid var(--line); box-shadow: 0 8px 36px #18181826; color: var(--ink); }
+  .analytics-consent h2 { font-size: 24px; }
+  .analytics-consent p { margin-top: 14px; font-size: 1.125rem; line-height: 1.65; }
+  .analytics-consent a { text-decoration: underline; text-underline-offset: 3px; }
+  .consent-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .consent-actions .button { min-width: 120px; }
+  .consent-status { color: var(--accent-hover); }
+  .analytics-settings[hidden], .analytics-consent[hidden], .consent-status[hidden] { display: none; }
+</style>
